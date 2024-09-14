@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#34347B",
+        primary: "var(--primary)",
       },
       fontFamily: {
         vietnam: ["Be Vietnam Pro", "sans-serif"],

@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Icon from "@mdi/react";
 import {
   mdiHomeVariant,
@@ -39,48 +42,45 @@ const NavItem = ({ iconPath, label, href, isActive }: NavItemProps) => {
 };
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   const navItems = [
     {
       label: "All projects",
-      href: "#",
+      href: "/",
       iconPath: mdiHomeVariant,
-      isActive: true,
     },
     {
       label: "Your projects",
-      href: "#",
+      href: "/projects",
       iconPath: mdiAccount,
-      isActive: false,
     },
     {
       label: "Shared with you",
-      href: "#",
+      href: "/shared",
       iconPath: mdiAccountSupervisor,
-      isActive: false,
     },
     {
       label: "Archived",
-      href: "#",
+      href: "/archived",
       iconPath: mdiInboxArrowDown,
-      isActive: false,
     },
     {
       label: "Trash",
-      href: "#",
+      href: "/trash",
       iconPath: mdiDelete,
-      isActive: false,
     },
   ];
 
   return (
     <aside className="flex flex-col w-[330px] h-auto bg-gray-100 pt-[60px] pb-[30px] px-[30px] border-r border-gray-300 min-w-[300px]">
       <div className="flex flex-col flex-grow">
-        <div className="flex flex-row gap-[7px] justify-center">
+        <a href="/" className="flex flex-row gap-[7px] justify-center">
           <Image src="/aro.png" width={43} height={41} alt="aro-icon" />
           <div className="font-vietnam width-[76px] height-[42px] text-[33.05px] font-bold leading-[41.8px] text-left text-primary">
             ARO
           </div>
-        </div>
+        </a>
         <nav className="mt-[40px] flex-grow">
           <ul className="space-y-2">
             {navItems.map((item, index) => (
@@ -89,7 +89,7 @@ const Navbar = () => {
                 iconPath={item.iconPath}
                 label={item.label}
                 href={item.href}
-                isActive={item.isActive}
+                isActive={pathname === item.href}
               />
             ))}
           </ul>
